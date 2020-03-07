@@ -46,7 +46,7 @@ var createChart = (el, fieldname) => {
     .domain(yDomain)
     .range([chartHeight, 0]);
 
-  var xAxis = d3.axisBottom(xScale).tickValues([2000, 2005, 2010, 2015, 2017]);
+  var xAxis = d3.axisBottom(xScale).tickValues([2000, 2005, 2010, 2015]);
 
   var yAxis = d3
     .axisLeft(yScale)
