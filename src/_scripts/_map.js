@@ -14,6 +14,9 @@ var sat = L.tileLayer(
 sat.addTo(map);
 map.setView([33.983265, -118.306799], 18);
 
+// optional: use template literals
+// https://stackoverflow.com/questions/27565056/es6-template-literals-vs-concatenated-strings
+
 homicides.forEach(obj => {
   L.circleMarker([obj.latitude, obj.longitude])
     .addTo(map)
