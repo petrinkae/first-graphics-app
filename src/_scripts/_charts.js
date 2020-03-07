@@ -75,8 +75,18 @@ var createChart = (el, fieldname) => {
     .attr("x", d => xScale(d.year))
     .attr("y", d => yScale(d[fieldname]))
     .attr("width", xScale.bandwidth())
-    .attr("height", d => chartHeight - yScale(d[fieldname]));
+    .attr("height", d => chartHeight - yScale(d[fieldname]))
+    .on("mouseenter", function(d) {
+      d3.select(this).classed("highlight", true);
+    })
+    .on("mouseleave", function(d) {
+      d3.select(this).classed("highlight", false);
+    });
 };
+
+// we skipped the tooltip addition, but there's a good tutorial in the notes
+
+// for multiples, create array of id names + fields and iterate
 
 createChart("#county-homicides", "homicides_total");
 createChart("#harvard-park-homicides", "homicides_harvard_park");
