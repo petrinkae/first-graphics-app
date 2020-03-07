@@ -2,9 +2,15 @@
 
 {% import "_modules/link/link.nunjucks" as link %}
 
+{# headline block #}
+
 {% block headline %}This is a headline, for real{% endblock %}
 
+{# byline block #}
+
 {% block byline %}By K.M. Petrin{% endblock %}
+
+{# pubdate block #}
 
 {% block pubdate %}
 
@@ -15,3 +21,24 @@
     </time>
 {% endblock %}
 
+{# main content block #}
+
+{% block content %}
+
+  {# 
+  site.data accesses data
+  "site" tells it to look in "data" folder for matching file name
+  name sets variable names
+  |dump is a filter -- you can print actual contents to check records 
+  .fieldname accesses field names; if we were using geojson
+  #}
+
+  {% for obj in site.data.harvard_park_homicides %}
+    {{ obj.last_name }} {{ obj.first_name }} <br>
+  {% endfor %}
+
+  {% for objects.collection in site.data.geo %}
+    {{ obj.properties.STATEFP }}<br>
+  {% endfor %}
+
+{% endblock %}
