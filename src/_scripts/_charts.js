@@ -1,5 +1,6 @@
 import * as d3 from "d3";
 import annualTotals from "../_data/annual_totals";
+import { divIcon } from "leaflet";
 
 var createChart = (el, fieldname) => {
   var container = d3.select(el);
@@ -21,6 +22,11 @@ var createChart = (el, fieldname) => {
   var g = svg
     .append("g")
     .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+  // adds tooltip 
+
+  var tooltip = g.append('text')
+    .attr('class', 'chart-tooltip');
 
   // annualTotals.map(d => d.year);
   // equivalent to
@@ -78,13 +84,24 @@ var createChart = (el, fieldname) => {
     .attr("height", d => chartHeight - yScale(d[fieldname]))
     .on("mouseenter", function(d) {
       d3.select(this).classed("highlight", true);
+
+      // added raise to guide recommendations to prevent clipping
+
+          var x = xScale(d.year) + xScale.bandwidth() / 2;
+
+          var y = yScale(d[fieldname]) - 5;
+
+          tooltip.text(d[fieldname])
+            .raise()
+            .attr("transform", `translate(${x}, ${y})`);
+
     })
     .on("mouseleave", function(d) {
       d3.select(this).classed("highlight", false);
+      tooltip.text('');
     });
 };
 
-// we skipped the tooltip addition, but there's a good tutorial in the notes
 
 // for multiples, create array of id names + fields and iterate
 

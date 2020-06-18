@@ -32,3 +32,21 @@ rect {
 .highlight {
   fill: #2ab2e4;
 }
+
+// makes necessary clipping look cleaner; try div tooltip next time
+
+@media screen and (max-width: 500px) {
+
+  .chart-tooltip {
+    font-family: Helvetica;
+    font-size: 12px;
+    text-anchor: middle;
+  }
+
+}
+
+.chart-tooltip {
+  font-family: Helvetica;
+  font-size: 14px;
+  text-anchor: middle;
+}
